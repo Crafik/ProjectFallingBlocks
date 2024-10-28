@@ -1,0 +1,62 @@
+{
+    "name": "Controls",
+    "maps": [
+        {
+            "name": "Touch",
+            "id": "f87898f2-dbcb-4180-a69f-9edee454c3bd",
+            "actions": [
+                {
+                    "name": "Position",
+                    "type": "PassThrough",
+                    "id": "9fe788f3-e82a-484c-b9f3-06a6fa008e83",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9617a6cb-c586-48f9-a438-b6f6c3bda55a",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Desktop",
+            "id": "ff045ce6-1fe3-4c64-922c-39cd14b2ba8f",
+            "actions": [
+                {
+                    "name": "Position",
+                    "type": "Value",
+                    "id": "7d727f78-5acb-48a3-a79f-dd9f094b90a9",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2ffa6ae2-4510-4d4d-9c36-286e7310bc98",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
