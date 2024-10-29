@@ -26,7 +26,10 @@ public class BallMovement : MonoBehaviour
                 float bounceAngle = Mathf.Lerp(10f, 70f, (Mathf.Abs(contactX) - 0.1f) / 0.9f);
                 if (bounceAngle > 45f){
                     float speedFactorVar = (bounceAngle - 45f) / 25f;
-                    moveSpeedFactor = Mathf.Lerp(1f, 3f, speedFactorVar);
+                    moveSpeedFactor = Mathf.Lerp(1f, 2f, speedFactorVar);
+                }
+                else{
+                    moveSpeedFactor = 1f;
                 }
                 Vector2 bounceVector = Vector2.up;
                 if (contactX < 0f){
@@ -40,17 +43,26 @@ public class BallMovement : MonoBehaviour
         }
         else{
             // dont know if it's better this way, we'll see
-            int contactCount = collision.contactCount;
-            ContactPoint2D[] contactPoints = new ContactPoint2D[contactCount];
-            collision.GetContacts(contactPoints);
-            foreach(ContactPoint2D point in contactPoints){
-                Vector2 collisionVector = point.point - (Vector2)_collider.bounds.center;
-                if (Mathf.Abs(collisionVector.x) < Mathf.Abs(collisionVector.y)){
-                    currentVector *= new Vector2(1f, -1f);
-                }
-                else{
-                    currentVector *= new Vector2(-1f, 1f);
-                }
+            // int contactCount = collision.contactCount;
+            // ContactPoint2D[] contactPoints = new ContactPoint2D[contactCount];
+            // collision.GetContacts(contactPoints);
+            // foreach(ContactPoint2D point in contactPoints){
+            //     Vector2 collisionVector = point.point - (Vector2)_collider.bounds.center;
+            //     if (Mathf.Abs(collisionVector.x) < Mathf.Abs(collisionVector.y)){
+            //         currentVector *= new Vector2(1f, -1f);
+            //     }
+            //     else{
+            //         currentVector *= new Vector2(-1f, 1f);
+            //     }
+            // }
+
+            // i'll stick with this, leaving other just in case
+            Vector2 collisionVector = collision.GetContact(0).point - (Vector2)_collider.bounds.center;
+            if (Mathf.Abs(collisionVector.x) < Mathf.Abs(collisionVector.y)){
+                currentVector *= new Vector2(1f, -1f);
+            }
+            else{
+                currentVector *= new Vector2(-1f, 1f);
             }
         }
     }
