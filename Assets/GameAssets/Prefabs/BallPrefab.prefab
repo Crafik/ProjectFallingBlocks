@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6316582989598547240}
   - component: {fileID: 854141965257265043}
   - component: {fileID: 3878947813100176443}
+  - component: {fileID: -5847829011318386885}
   m_Layer: 0
   m_Name: BallPrefab
   m_TagString: Untagged
@@ -178,3 +179,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 6286175692267621672}
+--- !u!114 &-5847829011318386885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6618543515793254606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4dadc6328e845d429c0caf9612df53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

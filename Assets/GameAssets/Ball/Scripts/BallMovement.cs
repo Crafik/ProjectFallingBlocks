@@ -13,9 +13,24 @@ public class BallMovement : MonoBehaviour
     private float moveSpeedFactor;
     private Vector2 currentVector;
 
+    private bool isActive;
+
+    void OnEnable(){
+        PlayerSpawnBall.BallLaunched += LaunchBall;
+    }
+
+    void OnDisable(){
+        PlayerSpawnBall.BallLaunched -= LaunchBall;
+    }
+
     void Start(){
         currentVector = new Vector2(1f, 1f).normalized;
         moveSpeedFactor = 1f;
+        isActive = false;
+    }
+
+    private void LaunchBall(){
+        isActive = true;
     }
 
     void OnCollisionEnter2D(Collision2D collision){
@@ -79,6 +94,11 @@ public class BallMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        _rigidBody.MovePosition(_rigidBody.position + moveSpeed * moveSpeedFactor * Time.fixedDeltaTime * currentVector);
+        if (isActive){
+            _rigidBody.MovePosition(_rigidBody.position + moveSpeed * moveSpeedFactor * Time.fixedDeltaTime * currentVector);
+        }
+        else{
+            _rigidBody.MovePosition(transform.parent.position);
+        }
     }
 }

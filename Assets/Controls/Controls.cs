@@ -35,6 +35,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Launch"",
+                    ""type"": ""Button"",
+                    ""id"": ""0eea2d69-cfc2-4a75-aef7-39bd917e5bb6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -46,6 +55,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17384066-498a-40be-8fcb-1571f06f80ba"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Launch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -63,6 +83,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Launch"",
+                    ""type"": ""Button"",
+                    ""id"": ""3747c276-5d5c-4df7-b90f-0db0d7902961"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -76,6 +105,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""515078b3-9649-40c7-8647-d67c127b91bc"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Launch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -85,9 +125,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Touch
         m_Touch = asset.FindActionMap("Touch", throwIfNotFound: true);
         m_Touch_Position = m_Touch.FindAction("Position", throwIfNotFound: true);
+        m_Touch_Launch = m_Touch.FindAction("Launch", throwIfNotFound: true);
         // Desktop
         m_Desktop = asset.FindActionMap("Desktop", throwIfNotFound: true);
         m_Desktop_Position = m_Desktop.FindAction("Position", throwIfNotFound: true);
+        m_Desktop_Launch = m_Desktop.FindAction("Launch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -150,11 +192,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Touch;
     private List<ITouchActions> m_TouchActionsCallbackInterfaces = new List<ITouchActions>();
     private readonly InputAction m_Touch_Position;
+    private readonly InputAction m_Touch_Launch;
     public struct TouchActions
     {
         private @Controls m_Wrapper;
         public TouchActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Position => m_Wrapper.m_Touch_Position;
+        public InputAction @Launch => m_Wrapper.m_Touch_Launch;
         public InputActionMap Get() { return m_Wrapper.m_Touch; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -167,6 +211,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Position.started += instance.OnPosition;
             @Position.performed += instance.OnPosition;
             @Position.canceled += instance.OnPosition;
+            @Launch.started += instance.OnLaunch;
+            @Launch.performed += instance.OnLaunch;
+            @Launch.canceled += instance.OnLaunch;
         }
 
         private void UnregisterCallbacks(ITouchActions instance)
@@ -174,6 +221,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Position.started -= instance.OnPosition;
             @Position.performed -= instance.OnPosition;
             @Position.canceled -= instance.OnPosition;
+            @Launch.started -= instance.OnLaunch;
+            @Launch.performed -= instance.OnLaunch;
+            @Launch.canceled -= instance.OnLaunch;
         }
 
         public void RemoveCallbacks(ITouchActions instance)
@@ -196,11 +246,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Desktop;
     private List<IDesktopActions> m_DesktopActionsCallbackInterfaces = new List<IDesktopActions>();
     private readonly InputAction m_Desktop_Position;
+    private readonly InputAction m_Desktop_Launch;
     public struct DesktopActions
     {
         private @Controls m_Wrapper;
         public DesktopActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Position => m_Wrapper.m_Desktop_Position;
+        public InputAction @Launch => m_Wrapper.m_Desktop_Launch;
         public InputActionMap Get() { return m_Wrapper.m_Desktop; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -213,6 +265,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Position.started += instance.OnPosition;
             @Position.performed += instance.OnPosition;
             @Position.canceled += instance.OnPosition;
+            @Launch.started += instance.OnLaunch;
+            @Launch.performed += instance.OnLaunch;
+            @Launch.canceled += instance.OnLaunch;
         }
 
         private void UnregisterCallbacks(IDesktopActions instance)
@@ -220,6 +275,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Position.started -= instance.OnPosition;
             @Position.performed -= instance.OnPosition;
             @Position.canceled -= instance.OnPosition;
+            @Launch.started -= instance.OnLaunch;
+            @Launch.performed -= instance.OnLaunch;
+            @Launch.canceled -= instance.OnLaunch;
         }
 
         public void RemoveCallbacks(IDesktopActions instance)
@@ -240,9 +298,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface ITouchActions
     {
         void OnPosition(InputAction.CallbackContext context);
+        void OnLaunch(InputAction.CallbackContext context);
     }
     public interface IDesktopActions
     {
         void OnPosition(InputAction.CallbackContext context);
+        void OnLaunch(InputAction.CallbackContext context);
     }
 }
