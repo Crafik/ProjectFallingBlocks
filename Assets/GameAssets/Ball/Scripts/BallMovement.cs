@@ -24,13 +24,15 @@ public class BallMovement : MonoBehaviour
     }
 
     void Start(){
-        currentVector = new Vector2(1f, 1f).normalized;
+        currentVector = new Vector2(0f, 1f).normalized;
         moveSpeedFactor = 1f;
+        _rigidBody.velocity = Vector2.zero;
         isActive = false;
     }
 
     private void LaunchBall(){
         isActive = true;
+        _rigidBody.velocity = new Vector2(0f, 1f).normalized * moveSpeed;
     }
 
     void OnCollisionEnter2D(Collision2D collision){
@@ -50,34 +52,10 @@ public class BallMovement : MonoBehaviour
                 if (contactX < 0f){
                     bounceAngle *= -1f;
                 }
-                currentVector = rotateVector2(bounceVector, bounceAngle);
+                _rigidBody.velocity = rotateVector2(bounceVector, bounceAngle) * moveSpeed * moveSpeedFactor;
             }
             else{
-                currentVector = Vector2.up;
-            }
-        }
-        else{
-            // dont know if it's better this way, we'll see
-            // int contactCount = collision.contactCount;
-            // ContactPoint2D[] contactPoints = new ContactPoint2D[contactCount];
-            // collision.GetContacts(contactPoints);
-            // foreach(ContactPoint2D point in contactPoints){
-            //     Vector2 collisionVector = point.point - (Vector2)_collider.bounds.center;
-            //     if (Mathf.Abs(collisionVector.x) < Mathf.Abs(collisionVector.y)){
-            //         currentVector *= new Vector2(1f, -1f);
-            //     }
-            //     else{
-            //         currentVector *= new Vector2(-1f, 1f);
-            //     }
-            // }
-
-            // i'll stick with this, leaving other just in case
-            Vector2 collisionVector = collision.GetContact(0).point - (Vector2)_collider.bounds.center;
-            if (Mathf.Abs(collisionVector.x) < Mathf.Abs(collisionVector.y)){
-                currentVector *= new Vector2(1f, -1f);
-            }
-            else{
-                currentVector *= new Vector2(-1f, 1f);
+                _rigidBody.velocity = Vector2.up * moveSpeed * moveSpeedFactor;
             }
         }
     }
@@ -95,7 +73,7 @@ public class BallMovement : MonoBehaviour
 
     void FixedUpdate(){
         if (isActive){
-            _rigidBody.MovePosition(_rigidBody.position + moveSpeed * moveSpeedFactor * Time.fixedDeltaTime * currentVector);
+            // _rigidBody.MovePosition(_rigidBody.position + moveSpeed * moveSpeedFactor * Time.fixedDeltaTime * currentVector);
         }
         else{
             _rigidBody.MovePosition(transform.parent.position);
