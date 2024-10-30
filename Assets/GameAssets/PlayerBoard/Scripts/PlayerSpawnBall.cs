@@ -43,8 +43,6 @@ public class PlayerSpawnBall : MonoBehaviour
 
     private void SpawnBall(){
         _ballChild = Instantiate(_ballPrefab, _ballSpawnPos);
-        Debug.Log(_ballChild.transform.parent);
-        Debug.Log(_ballSpawnPos.parent);
     }
 
     private void LaunchBall(InputAction.CallbackContext ctx){
