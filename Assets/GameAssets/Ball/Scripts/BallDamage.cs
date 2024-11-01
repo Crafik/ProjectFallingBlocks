@@ -13,6 +13,4 @@ public class BallDamage : MonoBehaviour
             collision.gameObject.GetComponent<BlockBehaviour>().GetDamage();
         }
     }
-
-    // BUG?: Sometimes collision seem to fire more times than needed. Dunno what to do with that for now
 }

@@ -9,7 +9,9 @@ public class BallDeath : MonoBehaviour
     public static event Action BallDestroyed;
 
     void OnTriggerEnter2D(Collider2D collision){
-        BallDestroyed?.Invoke();
-        Destroy(gameObject);
+        if (collision.CompareTag("Hazard")){
+            BallDestroyed?.Invoke();
+            Destroy(gameObject);
+        }
     }
 }

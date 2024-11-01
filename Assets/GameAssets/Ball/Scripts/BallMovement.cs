@@ -37,8 +37,8 @@ public class BallMovement : MonoBehaviour
         // seems to work
         if (collision.gameObject.CompareTag("Player")){
             float contactX = collision.GetContact(0).collider.bounds.center.x - _collider.bounds.center.x;
-            if (contactX >= 0.1f || contactX <= -0.1f){
-                float bounceAngle = Mathf.Lerp(10f, 70f, (Mathf.Abs(contactX) - 0.1f) / 0.9f);
+            if (contactX >= 0.05f || contactX <= -0.05f){
+                float bounceAngle = Mathf.Lerp(10f, 70f, (Mathf.Abs(contactX) - 0.05f) / 0.9f);
                 if (bounceAngle > 45f){
                     float speedFactorVar = (bounceAngle - 45f) / 25f;
                     moveSpeedFactor = Mathf.Lerp(1f, 2f, speedFactorVar);
