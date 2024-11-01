@@ -11,7 +11,6 @@ public class BallMovement : MonoBehaviour
     public float moveSpeed;
 
     private float moveSpeedFactor;
-    private Vector2 currentVector;
 
     private bool isActive;
 
@@ -24,7 +23,6 @@ public class BallMovement : MonoBehaviour
     }
 
     void Start(){
-        currentVector = new Vector2(0f, 1f).normalized;
         moveSpeedFactor = 1f;
         _rigidBody.velocity = Vector2.zero;
         isActive = false;
@@ -52,10 +50,10 @@ public class BallMovement : MonoBehaviour
                 if (contactX < 0f){
                     bounceAngle *= -1f;
                 }
-                _rigidBody.velocity = rotateVector2(bounceVector, bounceAngle) * moveSpeed * moveSpeedFactor;
+                _rigidBody.velocity = moveSpeed * moveSpeedFactor * rotateVector2(bounceVector, bounceAngle);
             }
             else{
-                _rigidBody.velocity = Vector2.up * moveSpeed * moveSpeedFactor;
+                _rigidBody.velocity = moveSpeed * moveSpeedFactor * Vector2.up;
             }
         }
     }
@@ -72,10 +70,7 @@ public class BallMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (isActive){
-            // _rigidBody.MovePosition(_rigidBody.position + moveSpeed * moveSpeedFactor * Time.fixedDeltaTime * currentVector);
-        }
-        else{
+        if (!isActive){
             _rigidBody.MovePosition(transform.parent.position);
         }
     }
