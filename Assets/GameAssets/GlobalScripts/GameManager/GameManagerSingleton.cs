@@ -9,6 +9,11 @@ public class GameManagerSingleton : MonoBehaviour
     [Header ("Public prefab references")]
     public GameObject FallingBlockPrefab;
 
+
+    [Space(20)]
+    [Header("-= GameManager =-")]
+    [SerializeField] private List<GameObject> _levelList;
+
     void Awake(){
         if (Instance != null && Instance != this){
             Destroy(this);
