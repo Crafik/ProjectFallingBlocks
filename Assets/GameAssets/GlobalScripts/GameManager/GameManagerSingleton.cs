@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,8 @@ public class GameManagerSingleton : MonoBehaviour
 
     [Space(20)]
     [Header("-= GameManager =-")]
-    [SerializeField] private List<GameObject> _levelList;
+    [SerializeField] private LevelList _levelList;
+    [SerializeField] private GameObject _backgroundImage;
 
     void Awake(){
         if (Instance != null && Instance != this){

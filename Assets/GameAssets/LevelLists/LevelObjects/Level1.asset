@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 337a320c31cb33c488b68440f1e67d5b, type: 3}
-  m_Name: TestLevel
+  m_Script: {fileID: 11500000, guid: b27de0ba23899634a94e2fbfd380c148, type: 3}
+  m_Name: Level1
   m_EditorClassIdentifier: 
-  Levels:
-  - {fileID: 11400000, guid: 896f412a9ea2232408286040646a5292, type: 2}
+  LevelPrefab: {fileID: 3246528617573467419, guid: 1c1bbdc371aa62541b9aad694bb95fec, type: 3}
+  LevelBackgroundColor: {r: 0.30980393, g: 0.10980392, b: 0.34901962, a: 0}
