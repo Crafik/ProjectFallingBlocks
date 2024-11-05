@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   LevelPrefab: {fileID: 3246528617573467419, guid: 1c1bbdc371aa62541b9aad694bb95fec, type: 3}
-  LevelBackgroundColor: {r: 0.30980393, g: 0.10980392, b: 0.34901962, a: 0}
+  LevelBackgroundColor: {r: 0.30980393, g: 0.10980392, b: 0.34901962, a: 1}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ using UnityEngine.UIElements;
 [SelectionBase]
 public class BlockBehaviour : MonoBehaviour
 {
+    public static event Action BlockDestroyed;
+
     [SerializeField] private OutlineBehaviour _outline; // here be links to outline and such
 
     [Range (0, 3)]
@@ -43,6 +46,7 @@ public class BlockBehaviour : MonoBehaviour
     }
 
     public void DestroyBlock(){
+        BlockDestroyed?.Invoke();
         Destroy(gameObject);
     }
 
