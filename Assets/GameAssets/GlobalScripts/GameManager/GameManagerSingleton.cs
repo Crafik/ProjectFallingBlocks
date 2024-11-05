@@ -32,6 +32,8 @@ public class GameManagerSingleton : MonoBehaviour
 
     private Coroutine _barrierCoroutine;
 
+    public int livesCounter;
+
     void Awake(){
         if (Instance != null && Instance != this){
             Destroy(this);
@@ -51,6 +53,7 @@ public class GameManagerSingleton : MonoBehaviour
 
     void Start(){
         SetLevel(0);
+        livesCounter = 5;
     }
 
     public void NextLevel(){

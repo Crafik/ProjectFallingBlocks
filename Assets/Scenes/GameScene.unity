@@ -1607,6 +1607,7 @@ MonoBehaviour:
   _leftBarrier: {fileID: 211118856}
   _rightBarrier: {fileID: 896412177}
   _barrierBlockPrefab: {fileID: 11400000, guid: fd6e92066a2c01848ba77cc743dd8886, type: 2}
+  livesCounter: 0
 --- !u!4 &740406295
 Transform:
   m_ObjectHideFlags: 0
@@ -1664,6 +1665,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 858825919}
+  - component: {fileID: 858825920}
+  - component: {fileID: 858825921}
+  - component: {fileID: 858825922}
   m_Layer: 5
   m_Name: BallsCounter
   m_TagString: Untagged
@@ -1695,6 +1699,59 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -70}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &858825920
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858825918}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4493e3a119899c14a94b1cc8da5572e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &858825921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858825918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95388de104d255b4a8bed6474feeed76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 858825920}
+  _spawner: {fileID: 858825922}
+--- !u!114 &858825922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858825918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1af57d7c7c8f6c45be57e944f5c22cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _list:
+  - {fileID: 977639064}
+  - {fileID: 30870740}
+  - {fileID: 1446404691}
+  - {fileID: 49373623}
+  - {fileID: 133667781}
 --- !u!1 &896412176
 GameObject:
   m_ObjectHideFlags: 0

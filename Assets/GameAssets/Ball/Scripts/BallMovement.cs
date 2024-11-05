@@ -29,8 +29,10 @@ public class BallMovement : MonoBehaviour
     }
 
     private void LaunchBall(){
-        isActive = true;
-        _rigidBody.velocity = new Vector2(0f, 1f).normalized * moveSpeed;
+        if(!isActive){
+            isActive = true;
+            _rigidBody.velocity = new Vector2(0f, 1f).normalized * moveSpeed;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision){

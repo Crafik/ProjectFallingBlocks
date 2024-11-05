@@ -25,7 +25,7 @@ public class PlayerSpawnBall : MonoBehaviour
         _controls.Touch.Launch.canceled += LaunchBall;
         _controls.Desktop.Launch.performed += LaunchBall;
 
-        BallDeath.BallDestroyed += SpawnBall;
+        BallCounterSpawn.BallSpawned += SpawnBall;
     }
 
     void OnDisable(){
@@ -34,11 +34,7 @@ public class PlayerSpawnBall : MonoBehaviour
         _controls.Touch.Launch.canceled -= LaunchBall;
         _controls.Desktop.Launch.performed -= LaunchBall;
 
-        BallDeath.BallDestroyed -= SpawnBall;
-    }
-
-    void Start(){
-        SpawnBall();
+        BallCounterSpawn.BallSpawned -= SpawnBall;
     }
 
     private void SpawnBall(){
@@ -46,7 +42,9 @@ public class PlayerSpawnBall : MonoBehaviour
     }
 
     private void LaunchBall(InputAction.CallbackContext ctx){
-        _ballChild.transform.parent = null;
-        BallLaunched?.Invoke();
+        if (_ballChild != null){
+            _ballChild.transform.parent = null;
+            BallLaunched?.Invoke();
+        }
     }
 }
