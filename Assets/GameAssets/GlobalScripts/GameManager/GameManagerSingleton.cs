@@ -80,6 +80,8 @@ public class GameManagerSingleton : MonoBehaviour
             _backgroundImage.GetComponent<SpriteRenderer>().color = _levelList.Levels[num].LevelBackgroundColor;
             _levelBlockCount = _levelInstance.transform.childCount;
 
+            ScoreCounter.Instance.SetTextColor(_levelList.Levels[num].LevelBackgroundColor);
+
             if (_barrierCoroutine != null){
                 StopCoroutine(_barrierCoroutine);
             }
