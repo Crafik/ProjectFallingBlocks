@@ -10,6 +10,8 @@ public class BallCounterSpawn : MonoBehaviour
 
     [SerializeField] private List<GameObject> _list;
 
+    [SerializeField] private GameObject _gameOverPanelPrefab;
+
     public void BallSpawn(){
         if (GameManagerSingleton.Instance.livesCounter > 0){
             GameManagerSingleton.Instance.livesCounter -= 1;
@@ -17,7 +19,7 @@ public class BallCounterSpawn : MonoBehaviour
             BallSpawned?.Invoke();
         }
         else{
-            // here be gameover code
+            Instantiate(_gameOverPanelPrefab, GameManagerSingleton.Instance.Canvas.transform);
             GameIsOver?.Invoke();
         }
     }

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class BallCounterShow : MonoBehaviour
 {
-    public static event Action AnimEnded;
-
     [SerializeField] private Animator _animator;
     [SerializeField] private BallCounterSpawn _spawner;
 

@@ -8,8 +8,9 @@ public class GameManagerSingleton : MonoBehaviour
 {
     public static GameManagerSingleton Instance { get; private set; }
 
-    [Header ("Public prefab references")]
+    [Header ("Public references")]
     public GameObject FallingBlockPrefab;
+    public GameObject Canvas;
 
 
     [Space(20)]

@@ -92,6 +92,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7e85946-5eaa-4f0c-9a94-a6dd7f89842a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -116,6 +125,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Launch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c36f377-a81c-46db-b69c-2beb5d8b38f6"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -130,6 +150,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Desktop = asset.FindActionMap("Desktop", throwIfNotFound: true);
         m_Desktop_Position = m_Desktop.FindAction("Position", throwIfNotFound: true);
         m_Desktop_Launch = m_Desktop.FindAction("Launch", throwIfNotFound: true);
+        m_Desktop_Pause = m_Desktop.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -247,12 +268,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IDesktopActions> m_DesktopActionsCallbackInterfaces = new List<IDesktopActions>();
     private readonly InputAction m_Desktop_Position;
     private readonly InputAction m_Desktop_Launch;
+    private readonly InputAction m_Desktop_Pause;
     public struct DesktopActions
     {
         private @Controls m_Wrapper;
         public DesktopActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Position => m_Wrapper.m_Desktop_Position;
         public InputAction @Launch => m_Wrapper.m_Desktop_Launch;
+        public InputAction @Pause => m_Wrapper.m_Desktop_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Desktop; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -268,6 +291,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Launch.started += instance.OnLaunch;
             @Launch.performed += instance.OnLaunch;
             @Launch.canceled += instance.OnLaunch;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IDesktopActions instance)
@@ -278,6 +304,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Launch.started -= instance.OnLaunch;
             @Launch.performed -= instance.OnLaunch;
             @Launch.canceled -= instance.OnLaunch;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IDesktopActions instance)
@@ -304,5 +333,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnPosition(InputAction.CallbackContext context);
         void OnLaunch(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
