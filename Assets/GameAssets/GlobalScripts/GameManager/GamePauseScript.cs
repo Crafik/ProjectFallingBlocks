@@ -42,9 +42,11 @@ public class GamePauseScript : MonoBehaviour
     }
 
     public void PauseButtonPress(){
-        if (_pauseMenuObject == null){
-            Time.timeScale = 0f;
-            _pauseMenuObject = Instantiate(_pauseMenuPrefab, GameManagerSingleton.Instance.Canvas.transform);
+        if (_isGameActive){
+            if (_pauseMenuObject == null){
+                Time.timeScale = 0f;
+                _pauseMenuObject = Instantiate(_pauseMenuPrefab, GameManagerSingleton.Instance.Canvas.transform);
+            }
         }
     }
 

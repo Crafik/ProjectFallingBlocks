@@ -9,6 +9,10 @@ public class FallingBlockBehaviour : MonoBehaviour
 
     private BlockBehaviour _owner;
 
+    public void Init(Color color){
+        Init(color, null);
+    }
+
     public void Init(Color color, BlockBehaviour owner){
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
         _owner = owner;
@@ -21,6 +25,9 @@ public class FallingBlockBehaviour : MonoBehaviour
         }
         if (collision.CompareTag("Hazard")){
             _owner.RestoreBlock();
+        }
+        if (collision.CompareTag("MainMenuBG")){
+            Destroy(gameObject);
         }
     }
 

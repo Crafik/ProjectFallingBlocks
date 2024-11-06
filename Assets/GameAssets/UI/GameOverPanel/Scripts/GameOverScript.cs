@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -31,8 +32,7 @@ public class GameOverScript : MonoBehaviour
 
     private void ExitPerformed(InputAction.CallbackContext ctx){
         if (_isActive){
-            // here be scene change
-            Debug.Log("exit performed");
+            SceneManager.LoadScene(0);
         }
     }
 

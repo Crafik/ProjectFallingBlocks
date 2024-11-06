@@ -58,9 +58,7 @@ public class PauseMenu : MonoBehaviour, IConfirmable
     }
 
     public void ConfirmPositive(){
-        // here be scene change
-        Debug.Log("Confirm positive");
-        _inFocus = true;
+        SceneManager.LoadScene(0);
     }
 
     public void ConfirmNegative(){

@@ -7,6 +7,7 @@ TagManager:
   - Background
   - Hazard
   - Blocks
+  - MainMenuBG
   layers:
   - Default
   - TransparentFX
