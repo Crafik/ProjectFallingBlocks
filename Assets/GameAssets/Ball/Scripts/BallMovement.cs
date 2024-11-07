@@ -59,7 +59,7 @@ public class BallMovement : MonoBehaviour
             }
         }
         else{
-            if (Mathf.Abs(_rigidBody.velocity.y) < 0.05f){
+            if (Mathf.Abs(_rigidBody.velocity.y) < 0.105f){
                 _rigidBody.AddForce(Vector2.up * (_rigidBody.position.y > 0f ? -1 : 1));
                 // should fix issue when ball stucks in horizontal movement
             }

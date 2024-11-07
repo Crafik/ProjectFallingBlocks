@@ -1614,7 +1614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FallingBlockPrefab: {fileID: 529891342449904091, guid: 9828874bbda869e4384adc37f5732a06, type: 3}
   Canvas: {fileID: 1931449965}
-  _levelList: {fileID: 11400000, guid: 860a7cc3e995e7641b1a6966980ea8cd, type: 2}
+  _levelList: {fileID: 11400000, guid: d69419664cfa9fa44a4c79218ece1bce, type: 2}
   _backgroundImage: {fileID: 1048145001}
   _blocksGrid: {fileID: 536513616}
   _barrierMap: {fileID: 52168347}
@@ -2331,7 +2331,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.24514033, g: 0.5377358, b: 0.22574759, a: 1}
+  m_Color: {r: 0, g: 0.4058392, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

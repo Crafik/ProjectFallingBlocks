@@ -25,6 +25,7 @@ public class FallingBlockBehaviour : MonoBehaviour
         }
         if (collision.CompareTag("Hazard")){
             _owner.RestoreBlock();
+            Destroy(gameObject);
         }
         if (collision.CompareTag("MainMenuBG")){
             Destroy(gameObject);
