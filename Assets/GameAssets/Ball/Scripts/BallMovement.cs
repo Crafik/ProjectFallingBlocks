@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMovement : MonoBehaviour
+public class BallMovementObsolete : MonoBehaviour
 {
+    // After considerate amount of time, i found out that i could have just used in-built solution for collision physics
+    // ffs
+    // this now declared obsolete
+    // left just in case anything exploding
     [SerializeField] private Rigidbody2D _rigidBody;
     [SerializeField] private CircleCollider2D _collider;
 
@@ -11,6 +15,7 @@ public class BallMovement : MonoBehaviour
     public float moveSpeed;
 
     private float moveSpeedFactor;
+    private Vector2 currentVector;
 
     private bool isActive;
 
@@ -23,24 +28,21 @@ public class BallMovement : MonoBehaviour
     }
 
     void Start(){
+        currentVector = new Vector2(0f, 1f).normalized;
         moveSpeedFactor = 1f;
-        _rigidBody.velocity = Vector2.zero;
         isActive = false;
     }
 
     private void LaunchBall(){
-        if(!isActive){
-            isActive = true;
-            _rigidBody.velocity = new Vector2(0f, 1f).normalized * moveSpeed;
-        }
+        isActive = true;
     }
 
     void OnCollisionEnter2D(Collision2D collision){
         // seems to work
         if (collision.gameObject.CompareTag("Player")){
             float contactX = collision.GetContact(0).collider.bounds.center.x - _collider.bounds.center.x;
-            if (contactX >= 0.05f || contactX <= -0.05f){
-                float bounceAngle = Mathf.Lerp(10f, 70f, (Mathf.Abs(contactX) - 0.05f) / 0.9f);
+            if (contactX >= 0.1f || contactX <= -0.1f){
+                float bounceAngle = Mathf.Lerp(10f, 70f, (Mathf.Abs(contactX) - 0.1f) / 0.9f);
                 if (bounceAngle > 45f){
                     float speedFactorVar = (bounceAngle - 45f) / 25f;
                     moveSpeedFactor = Mathf.Lerp(1f, 2f, speedFactorVar);
@@ -52,16 +54,34 @@ public class BallMovement : MonoBehaviour
                 if (contactX < 0f){
                     bounceAngle *= -1f;
                 }
-                _rigidBody.velocity = moveSpeed * moveSpeedFactor * rotateVector2(bounceVector, bounceAngle);
+                currentVector = rotateVector2(bounceVector, bounceAngle);
             }
             else{
-                _rigidBody.velocity = moveSpeed * moveSpeedFactor * Vector2.up;
+                currentVector = Vector2.up;
+                moveSpeedFactor = 1f;
             }
         }
         else{
-            if (Mathf.Abs(_rigidBody.velocity.y) < 0.105f){
-                _rigidBody.AddForce(Vector2.up * (_rigidBody.position.y > 0f ? -1 : 1));
-                // should fix issue when ball stucks in horizontal movement
+            ContactPoint2D[] points = new ContactPoint2D[collision.contactCount];
+            collision.GetContacts(points);
+            foreach(ContactPoint2D point in points){
+                Vector2 vec = point.point - (Vector2)_collider.bounds.center;
+                if (Mathf.Abs(vec.x) > Mathf.Abs(vec.y)){
+                    if (vec.x > 0f){
+                        currentVector = new Vector2(Mathf.Abs(currentVector.x) * -1f, currentVector.y);
+                    }
+                    else{
+                        currentVector = new Vector2(Mathf.Abs(currentVector.x), currentVector.y);
+                    }
+                }
+                else{
+                    if (vec.y > 0f){
+                        currentVector = new Vector2(currentVector.x, Mathf.Abs(currentVector.y) * -1f);
+                    }
+                    else{
+                        currentVector = new Vector2(currentVector.x, Mathf.Abs(currentVector.y));
+                    }
+                }
             }
         }
     }
@@ -78,7 +98,10 @@ public class BallMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (!isActive){
+        if (isActive){
+            _rigidBody.MovePosition(_rigidBody.position + moveSpeed * moveSpeedFactor * Time.fixedDeltaTime * currentVector);
+        }
+        else{
             _rigidBody.MovePosition(transform.parent.position);
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1213066192257262474}
   - component: {fileID: 6286175692267621672}
   - component: {fileID: 6316582989598547240}
-  - component: {fileID: -8466975143824296402}
+  - component: {fileID: -7551454093521366350}
   - component: {fileID: -3299695572895143905}
   - component: {fileID: -5847829011318386885}
   - component: {fileID: -7796947039255975447}
@@ -141,7 +141,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: ace5681f401d27c45a7159c0872cd5d2, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -152,7 +152,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-8466975143824296402
+--- !u!114 &-7551454093521366350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6618543515793254606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc71666891af8845bac4e05c2a503b3, type: 3}
+  m_Script: {fileID: 11500000, guid: e8a98f147da69d34287adcc63ac631ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidBody: {fileID: 6316582989598547240}
