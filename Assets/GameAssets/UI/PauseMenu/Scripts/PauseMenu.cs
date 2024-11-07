@@ -58,6 +58,7 @@ public class PauseMenu : MonoBehaviour, IConfirmable
     }
 
     public void ConfirmPositive(){
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 

@@ -21,6 +21,10 @@ public class MainMenuManagerSingleton : MonoBehaviour, IConfirmable
         #if UNITY_WEBGL
         _exitButton.SetActive(false);
         #endif
+
+        #if UNITY_ANDROID
+        Application.targetFrameRate = 60;
+        #endif
     }
 
     void Start(){
